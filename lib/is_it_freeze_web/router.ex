@@ -14,14 +14,8 @@ defmodule IsItFreezeWeb.Router do
   end
 
   scope "/", IsItFreezeWeb do
-    # Use the default browser stack
-    pipe_through(:browser)
+    pipe_through(:api)
 
-    get("/", PageController, :index)
+    get("/:year/:month/:day", FreezeController, :is_frozen)
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", IsItFreezeWeb do
-  #   pipe_through :api
-  # end
 end
