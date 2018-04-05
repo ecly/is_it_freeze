@@ -9,28 +9,28 @@ defmodule IsItFreeze.Easter do
   Converted from this mess https://www.codeproject.com/Tips/1168636/When-Is-Easter
   """
   def date_of_easter(year) do
-    goldenNumber = Integer.mod(year, 19)
+    golden_number = Integer.mod(year, 19)
     century = Integer.floor_div(year, 100)
 
-    daysToNextFullMoon =
+    days_until_full_moon =
       Integer.mod(
         century - Integer.floor_div(century, 4) - Integer.floor_div(8 * century + 13, 25) +
-          19 * goldenNumber + 15,
+          19 * golden_number + 15,
         30
       )
 
-    daysToEquinox =
-      daysToNextFullMoon -
-        Integer.floor_div(daysToNextFullMoon, 28) *
+    days_until_equinox =
+      days_until_full_moon -
+        Integer.floor_div(days_until_full_moon, 28) *
           (1 -
-             Integer.floor_div(daysToNextFullMoon, 28) *
-               Integer.floor_div(29, daysToNextFullMoon + 1) *
-               Integer.floor_div(21 - goldenNumber, 11))
+             Integer.floor_div(days_until_full_moon, 28) *
+               Integer.floor_div(29, days_until_full_moon + 1) *
+               Integer.floor_div(21 - golden_number, 11))
 
     day =
-      daysToEquinox -
+      days_until_equinox -
         Integer.mod(
-          year + Integer.floor_div(year, 4) + daysToEquinox + 2 - century +
+          year + Integer.floor_div(year, 4) + days_until_equinox + 2 - century +
             Integer.floor_div(century, 4),
           7
         ) + 28
