@@ -1,4 +1,7 @@
 defmodule IsItFreeze.Application do
+  @moduledoc """
+  The application from which the IsItFreeze app is started.
+  """
   use Application
 
   # See https://hexdocs.pm/elixir/Application.html
