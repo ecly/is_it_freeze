@@ -25,6 +25,7 @@ defmodule IsItFreeze.BankHolidays do
       {12, 25} -> true # christmas day
       {12, 26} -> true # 2nd christmas day
       {12, 31} -> true # new year's day
+      otherwise -> false
     end
   end
 
@@ -36,13 +37,13 @@ defmodule IsItFreeze.BankHolidays do
     0 => "Easter day",
     1 => "2nd Easter day",
     26 => "Great Prayer Day",
-    40 => "Feast of the Ascension",
-    41 => "Bank holiday",
-    51 => "Bank holiday",
+    39 => "Feast of the Ascension",
+    40 => "Bank holiday",
+    50 => "2nd Pentecost Day",
   }
   defp is_easter_holiday?(date) do
     {year, month, day} = Date.to_erl(date)
-    easter = Easter.date_of_easter(year)
+    {:ok, easter} = Easter.date_of_easter(year)
     offset = Date.diff(date, easter)
     easter_offsets = Map.keys(@easter_holiday_offsets)
     offset in easter_offsets
