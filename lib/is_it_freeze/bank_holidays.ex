@@ -18,14 +18,34 @@ defmodule IsItFreeze.BankHolidays do
 
   defp is_static_holiday?(date) do
     {_year, month, day} = Date.to_erl(date)
+
     case {month, day} do
-      {1, 1} -> true   # new year's day
-      {6, 5} -> true   # constitution day
-      {12, 24} -> true # christmas eve
-      {12, 25} -> true # christmas day
-      {12, 26} -> true # 2nd christmas day
-      {12, 31} -> true # new year's day
-      otherwise -> false
+      # new year's day
+      {1, 1} ->
+        true
+
+      # constitution day
+      {6, 5} ->
+        true
+
+      # christmas eve
+      {12, 24} ->
+        true
+
+      # christmas day
+      {12, 25} ->
+        true
+
+      # 2nd christmas day
+      {12, 26} ->
+        true
+
+      # new year's day
+      {12, 31} ->
+        true
+
+      otherwise ->
+        false
     end
   end
 
@@ -39,7 +59,7 @@ defmodule IsItFreeze.BankHolidays do
     26 => "Great Prayer Day",
     39 => "Feast of the Ascension",
     40 => "Bank holiday",
-    50 => "2nd Pentecost Day",
+    50 => "2nd Pentecost Day"
   }
   defp is_easter_holiday?(date) do
     {year, month, day} = Date.to_erl(date)

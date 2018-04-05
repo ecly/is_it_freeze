@@ -21,13 +21,13 @@ defmodule IsItFreeze.EasterTest do
   end
 
   test "2019 easter" do
-    easter= ~D[2019-04-21]
+    easter = ~D[2019-04-21]
     {:ok, date} = Easter.date_of_easter(2019)
     assert easter == date
   end
 
   test "2020 easter" do
-    easter= ~D[2020-04-12]
+    easter = ~D[2020-04-12]
     {:ok, date} = Easter.date_of_easter(2020)
     assert easter == date
   end

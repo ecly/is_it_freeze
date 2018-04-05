@@ -12,7 +12,7 @@ defmodule IsItFreeze.Application do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the endpoint when the application starts
-      supervisor(IsItFreezeWeb.Endpoint, []),
+      supervisor(IsItFreezeWeb.Endpoint, [])
       # Start your own worker by calling: IsItFreeze.Worker.start_link(arg1, arg2, arg3)
       # worker(IsItFreeze.Worker, [arg1, arg2, arg3]),
     ]

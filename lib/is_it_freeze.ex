@@ -13,9 +13,8 @@ defmodule IsItFreeze do
   is a freeze day or not.
   """
   def frozen?(date) do
-    is_january_freeze?(date)
-    || is_last_days_in_month_freeze?(date)
-    || is_first_days_in_month_freeze?(date)
+    is_january_freeze?(date) || is_last_days_in_month_freeze?(date) ||
+      is_first_days_in_month_freeze?(date)
   end
 
   # TODO - we don't actually freeze entirety
