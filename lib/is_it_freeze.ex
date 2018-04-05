@@ -22,6 +22,10 @@ defmodule IsItFreeze do
     day <= 3
   end
 
+  def is_bank_day?(date) do
+
+  end
+
   def frozen?(date) do
     is_weekend?(date)
     || is_last_2_days?(date)
