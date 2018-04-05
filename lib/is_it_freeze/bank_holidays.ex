@@ -11,8 +11,6 @@ defmodule IsItFreeze.BankHolidays do
   otherwise returns false.
   """
   def is_bank_holiday?(date) do
-    {year, _month, _day} = Date.to_erl(date)
-    easter = Easter.date_of_easter(year)
     is_static_holiday?(date) || is_easter_holiday?(date)
   end
 
@@ -44,7 +42,7 @@ defmodule IsItFreeze.BankHolidays do
       {12, 31} ->
         true
 
-      otherwise ->
+      _otherwise ->
         false
     end
   end
@@ -62,7 +60,7 @@ defmodule IsItFreeze.BankHolidays do
     50 => "2nd Pentecost Day"
   }
   defp is_easter_holiday?(date) do
-    {year, month, day} = Date.to_erl(date)
+    {year, _month, _day} = Date.to_erl(date)
     {:ok, easter} = Easter.date_of_easter(year)
     offset = Date.diff(date, easter)
     easter_offsets = Map.keys(@easter_holiday_offsets)
