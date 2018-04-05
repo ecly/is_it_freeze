@@ -1,12 +1,17 @@
 defmodule IsItFreezeWeb.FreezeController do
+  @moduledoc """
+  The sole controller of IsItFreeze,
+  as the IsItFreeze application, only does a single thing.
+  """
+
   use IsItFreezeWeb, :controller
   alias IsItFreeze
 
   @doc """
-  The sole controller of IsItFreeze,
-  as the IsItFreeze application, does only a single thing.
+  Returns whether the given date is a freeze date.
+  Renturns an error in case the given date, cannot be parsed.
   """
-  def is_frozen(conn, %{"year" => y, "month" => m, "day" => d}) do
+  def is_it_freeze(conn, %{"year" => y, "month" => m, "day" => d}) do
     year = String.to_integer(y)
     month = String.to_integer(m)
     day = String.to_integer(d)
@@ -16,7 +21,16 @@ defmodule IsItFreezeWeb.FreezeController do
         frozen_val = IsItFreeze.frozen?(date)
         json(conn, frozen_val)
       _otherwise ->
-        render(conn, IsItFreezeWeb.ErrorView, "error.json", %{error: "Bad date"})
+        render(conn, IsItFreezeWeb.ErrorView, "error.json", %{error: "Bad date. Format is /year/month/day."})
     end
+  end
+
+  @doc """
+  Returns whether today is a freeze date.
+  """
+  def is_it_freeze_today(conn, _params) do
+    today = Date.utc_today()
+    frozen_val = IsItFreeze.frozen?(today)
+    json(conn, frozen_val)
   end
 end

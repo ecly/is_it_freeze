@@ -16,6 +16,7 @@ defmodule IsItFreezeWeb.Router do
   scope "/", IsItFreezeWeb do
     pipe_through(:api)
 
-    get("/:year/:month/:day", FreezeController, :is_frozen)
+    get("/:year/:month/:day", FreezeController, :is_it_freeze)
+    get("/", FreezeController, :is_it_freeze_today)
   end
 end
